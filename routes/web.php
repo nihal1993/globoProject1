@@ -48,5 +48,5 @@ Auth::routes();
     'as' => 'home'
   ]);
 
- Route::post('/blog','HomeController@index');
+ Route::post('/blogCreate','BlogController@create');
 

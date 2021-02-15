@@ -24,23 +24,19 @@
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">Start Bootstrap </div>
       <div class="list-group list-group-flush">
+        <a href="{{  url('/home') }}" class="list-group-item list-group-item-action bg-light ">Add Blog </a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
       </div>
     </div>
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
       <div class="container-fluid">
-        <h1 class="mt-4">create Blog</h1>
-         <form method="POST" action="{{ action('HomeController@create')}}">
+        <h1 class="mt-4">create</h1>
+         <form method="POST" action="{{  url('/blogCreate') }}">
                             {{ csrf_field() }}
                             <div class="form-group row">
-                                <label for="exampleFormControlTextarea1">Blog</label>
+                               
     
                                 <div class="col-md-6">
                                     

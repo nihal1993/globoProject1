@@ -1,7 +1,6 @@
 <?php
-
 namespace App\Http\Controllers;
-
+use Auth
 use App\Blog;
 use Illuminate\Http\Request;
 
@@ -14,73 +13,30 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
-        return view('tasks.index',compact('tasks',$tasks));
+        $userId = Auth::id();
+        $blogs = Blog::where('user_id','!=',$userId)->get();
+         return view('home', [
+            'blogs'=>$blogs,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('tasks.create');
+    public function store(Request $request){
+         // Validate
+        $request->validate([
+            'description' => 'required',
+        ]);   
+        $userId = Auth::id();
+        $task = Blog::create(['description' => $request->description,'user_id'=> $userId]);
+        return redirect('home');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+   
+    public function destroy(Request $request, Task $task)
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Blog  $blog
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Blog $blog)
     {
-        //
+        $task->delete();
+        $request->session()->flash('message', 'Successfully deleted the task!');
+        return redirect('tasks');
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Blog  $blog
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Blog $blog)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Blog  $blog
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Blog $blog)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Blog  $blog
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Blog $blog)
-    {
-        //
-    }
+    
 }
