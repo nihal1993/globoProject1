@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -18,19 +20,13 @@
 </head>
 
 <body>
- @include('inc.navbar')
+ @include('inc.navadmin')
   <div class="d-flex" id="wrapper">
 
    @include('sidenav')
 
     <!-- Page Content -->
-    <div id="page-content-wrapper">
-      <div class="container-fluid">
-        <h1 class="mt-4">Simple Sidebar</h1>
-        <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
-        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
-      </div>
-    </div>
+    @include('home')
     <!-- /#page-content-wrapper -->
 
   </div>
